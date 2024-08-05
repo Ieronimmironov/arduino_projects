@@ -30,13 +30,13 @@ void setup() {
   mpu.initialize();
   mpu.dmpInitialize();
   mpu.setDMPEnabled(true);
-  mpu.setFullScaleAccelRange(MPU6050_ACCEL_FS_4);
-  mpu.setFullScaleGyroRange(MPU6050_GYRO_FS_250);
+  //mpu.setFullScaleAccelRange(MPU6050_ACCEL_FS_4);
+  //mpu.setFullScaleGyroRange(MPU6050_GYRO_FS_250);
   
 
 
 
- //attachInterrupt(0, dmpReady, RISING);
+ // attachInterrupt(0, dmpReady, RISING);
 
   pinMode(CH1, INPUT);
   pinMode(CH2, INPUT);
@@ -85,10 +85,10 @@ void loop() {
   //my code
   sign_writer();
   Serial.print("Ch1: ");
-  //Serial.print(ch1Value);
   Serial.println(sign1);//
   Serial.print(" | Ch2: ");
   Serial.println(sign2);//
+  //Serial.print(ch1Value);
   //Serial.println(ch2Value);
   //Serial.println(sign1);
   //Serial.println(sign2);
@@ -96,6 +96,12 @@ void loop() {
   deg[0] = ypr[0] * 180.0 / M_PI;//z
   deg[1] = ypr[1] * 180.0 / M_PI;//y
   deg[2] = ypr[2] * 180.0 / M_PI;//x
+  Serial.print(deg[0]); // вокруг оси Z
+  Serial.print(',');
+  Serial.print(deg[1]); // вокруг оси Y
+  Serial.print(',');
+  Serial.print(deg[2]); // вокруг оси X
+  Serial.println();
   mpu.getMotion6(&ai[0], &ai[1], &ai[2], &gi[0], &gi[1], &gi[2]);
   if(first)
   {
@@ -194,6 +200,7 @@ void loop() {
   delay(10);
   //.
 }
+
 void posmn(float mn)
 {
   for(int i = 0; i < 4; i++)

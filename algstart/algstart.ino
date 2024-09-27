@@ -130,7 +130,7 @@ void loop() {
     lst = now;
     ygle(time);
     //alg
-    calc()
+    //calc();
     //alg
     saveg();
   }
